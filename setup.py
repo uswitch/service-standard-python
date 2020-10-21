@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name='service-standard-python',
-    version='0.0.1',
+    version='0.1',
     description='RVU Service Standard library for Python',
     url='git@github.com:uswitch/service-standard-python.git',
     author='Site Reliability Engineering',
