@@ -8,6 +8,6 @@ setup(
     author='Site Reliability Engineering',
     author_email='sre@rvu.co.uk',
     install_requires=['flask', 'prometheus_client'],
-    packages=['service-standard-python'],
+    packages=['service_standard_python'],
     zip_safe=False
 )
