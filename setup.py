@@ -7,7 +7,7 @@ setup(
     url='git@github.com:uswitch/service-standard-python.git',
     author='Site Reliability Engineering',
     author_email='sre@rvu.co.uk',
-    install_requires=['flask', 'prometheus_client'],
+    install_requires=['flask', 'prometheus_client', 'werkzeug'],
     packages=['service_standard_python'],
     zip_safe=False
 )

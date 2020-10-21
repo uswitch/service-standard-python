@@ -1,4 +1,5 @@
-from prometheus_client import Counter, Histogram
+from prometheus_client import Counter, Histogram, make_wsgi_app
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 import functools
 import time
 from flask import request
@@ -49,3 +50,13 @@ def service_standard_flask_wrapper(httpHandler):
         ).observe(time.perf_counter() - start_time)
         return resp
     return wrapper_measure
+
+
+def add_prometheus_middleware(app):
+    app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {
+        '/metrics': make_wsgi_app()
+    })
+
+
+def make_prometheus_wsgi_app():
+    return make_wsgi_app()
