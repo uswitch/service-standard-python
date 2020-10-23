@@ -49,15 +49,15 @@ def myErrorHandler(e):
 ```
 
 ### Exposing the endpoint
-For simple apps, `add_prometheus_middleware()` works easily:
+For simple apps, `add_prometheus()` easily adds a `/metrics` endpoint:
 ```
 app = Flask(__name__)
 
 # Add prometheus wsgi middleware to route /metrics requests
-add_prometheus_middleware(app)
+add_prometheus(app)
 ```
 
-Alternatively, if your application already has a middleware setup, you can instead use the [prometheus_client](https://pypi.org/project/prometheus-client/) package directly with `make__wsgi_app()` like so:
+Alternatively, if your application already has middlewares, you can instead use the [prometheus_client](https://pypi.org/project/prometheus-client/) package directly to create an endpoint with `make_wsgi_app()` like so:
 ```
 app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {
         '/other-endpoints': other_wsgi_app()
