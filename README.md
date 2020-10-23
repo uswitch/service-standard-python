@@ -57,10 +57,10 @@ app = Flask(__name__)
 add_prometheus_middleware(app)
 ```
 
-Alternatively, if your application already has a middleware setup, you can instead add prometheus as an additional endpoint with `make_prometheus_wsgi_app()` like so:
+Alternatively, if your application already has a middleware setup, you can instead use the [prometheus_client](https://pypi.org/project/prometheus-client/) package directly with `make__wsgi_app()` like so:
 ```
 app.wsgi_app = DispatcherMiddleware(app.wsgi_app, {
         '/other-endpoints': other_wsgi_app()
-        '/metrics': make_prometheus_wsgi_app()
+        '/metrics': make_wsgi_app()
     })
 ```
