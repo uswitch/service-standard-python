@@ -9,15 +9,15 @@ Any build environment will need access to this repo.
 
 ### Via pipenv
 ```
-pipenv install -e "git+https://github.com/uswitch/service-standard-python.git@v0.2#egg=service-standard-python"
+pipenv install -e "git+https://github.com/uswitch/service-standard-python.git@v0.3#egg=service-standard-python"
 ```
 Your Pipfile should have a line like:
 ```
-service-standard-python = {editable = true, git = "https://github.com/uswitch/service-standard-python.git", ref = "v0.2"}
+service-standard-python = {editable = true, git = "https://github.com/uswitch/service-standard-python.git", ref = "v0.3"}
 ```
 ### Via pip
 ```
-pip install -e "git+https://github.com/uswitch/service-standard-python@v0.2#egg=service-standard-python"
+pip install -e "git+https://github.com/uswitch/service-standard-python@v0.3#egg=service-standard-python"
 ```
 
 Your requirements.txt should have a line specifying a link to the git repo.
@@ -27,7 +27,7 @@ Your requirements.txt should have a line specifying a link to the git repo.
 ### HTTP requests & duration
 To track Flask HTTP requests, use the flask wrapper for automatic timing and labelling:
 ```python
-from service_standard_python import service_standard_flask_wrapper
+from service_standard_python.flask import service_standard_flask_wrapper
 
 ...
 
@@ -39,7 +39,7 @@ def myHandlerFunc():
 ### Errors
 To count errors, use the exposed `ERRORS_TOTAL` counter:
 ```python
-from service_standard_python import ERRORS_TOTAL
+from service_standard_python.metrics import ERRORS_TOTAL
 
 ...
 
@@ -51,6 +51,8 @@ def myErrorHandler(e):
 ### Exposing the endpoint
 For simple apps, `add_prometheus()` easily adds a `/metrics` endpoint:
 ```
+from service_standard_python.flask import add_prometheus
+
 app = Flask(__name__)
 
 # Add prometheus wsgi middleware to route /metrics requests
